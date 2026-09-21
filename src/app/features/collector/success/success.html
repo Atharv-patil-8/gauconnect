@@ -1,0 +1,89 @@
+<div class="gc-container gc-stack success-container">
+
+  <!-- Success icon -->
+  <div class="success-icon-wrapper">
+    <div class="success-icon">✓</div>
+  </div>
+
+  <div class="success-message">
+    <h1>Collection Recorded</h1>
+    <p class="success-sub">Transaction saved successfully</p>
+  </div>
+
+  @if (transaction(); as tx) {
+
+    <div class="receipt-card">
+
+      <div class="receipt-row receipt-row-large">
+        <span class="receipt-label">Amount</span>
+        <span class="receipt-amount">₹{{ tx.amount | number:'1.2-2' }}</span>
+      </div>
+
+      <div class="receipt-divider"></div>
+
+      @if (farmer(); as f) {
+        <div class="receipt-row">
+          <span class="receipt-label">Farmer</span>
+          <span class="receipt-value">{{ f.name }}</span>
+        </div>
+      }
+
+      <div class="receipt-row">
+        <span class="receipt-label">Animal</span>
+        <span class="receipt-value">
+          {{ tx.animalType === 'Cow' ? '🐄' : '🐃' }}
+          {{ tx.animalType }} #{{ tx.animalRegistrationNumber }}
+        </span>
+      </div>
+
+      <div class="receipt-row">
+        <span class="receipt-label">Quantity</span>
+        <span class="receipt-value">{{ tx.quantity | number:'1.1-1' }} L</span>
+      </div>
+
+      <div class="receipt-row">
+        <span class="receipt-label">Fat / SNF</span>
+        <span class="receipt-value">
+          {{ tx.fat | number:'1.1-1' }}% / {{ tx.snf | number:'1.1-1' }}%
+        </span>
+      </div>
+
+      <div class="receipt-row">
+        <span class="receipt-label">Rate</span>
+        <span class="receipt-value">₹{{ tx.rate | number:'1.2-2' }}/L</span>
+      </div>
+
+      <div class="receipt-row">
+        <span class="receipt-label">Time</span>
+        <span class="receipt-value">{{ timeString() }} · {{ tx.shift }}</span>
+      </div>
+
+    </div>
+
+  }
+
+  <!-- Actions -->
+  <div class="success-actions">
+    <button type="button" class="success-action" (click)="onPrint()">
+      <span class="success-action-icon">🖨️</span>
+      <span>Print Slip</span>
+    </button>
+    <button type="button" class="success-action" (click)="onSendSms()">
+      <span class="success-action-icon">📱</span>
+      <span>Send SMS</span>
+    </button>
+  </div>
+
+  <button
+    type="button"
+    class="gc-btn gc-btn-primary gc-btn-large"
+    (click)="onNextFarmer()"
+  >
+    NEXT FARMER →
+  </button>
+
+  <button type="button" class="link-btn-cancel" (click)="onDashboard()">
+    Back to Dashboard
+  </button>
+
+</div>

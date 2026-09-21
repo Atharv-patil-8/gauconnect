@@ -1,0 +1,112 @@
+.collector-shift {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gc-space-sm);
+  background: var(--gc-success-bg);
+  color: var(--gc-primary-dark);
+  padding: var(--gc-space-xs) var(--gc-space-md);
+  border-radius: var(--gc-radius-full);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  align-self: flex-start;
+}
+
+.collector-shift-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gc-primary);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+.collector-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gc-space-sm);
+}
+
+.collector-stat-card {
+  background: var(--gc-surface);
+  border: 1px solid var(--gc-border);
+  border-radius: var(--gc-radius-md);
+  padding: var(--gc-space-md) var(--gc-space-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gc-space-xs);
+  box-shadow: var(--gc-shadow-sm);
+  min-height: 100px;
+  justify-content: center;
+}
+
+.collector-stat-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.collector-stat-label {
+  font-size: 12px;
+  color: var(--gc-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.collector-stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gc-text);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.collector-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gc-space-sm);
+}
+
+.collector-action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gc-space-sm);
+  min-height: 100px;
+  background: var(--gc-surface);
+  border: 1px solid var(--gc-border);
+  border-radius: var(--gc-radius-md);
+  padding: var(--gc-space-md);
+  box-shadow: var(--gc-shadow-sm);
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.collector-action-card:hover {
+  border-color: var(--gc-primary);
+}
+
+.collector-action-card:active {
+  transform: scale(0.98);
+}
+
+.collector-action-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.collector-action-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gc-text);
+  text-align: center;
+}
+
+.collector-sync {
+  margin-top: var(--gc-space-md);
+}

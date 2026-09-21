@@ -1,0 +1,91 @@
+<div class="rate-editor">
+
+  <!-- Status bar -->
+  <div class="rate-editor-status">
+    @if (canEdit()) {
+      <span class="gc-badge gc-badge-success">✏️ Editable</span>
+    } @else {
+      <span class="gc-badge gc-badge-info">👁️ View only</span>
+    }
+    <span class="gc-text-muted rate-editor-meta">
+      Last updated: {{ lastUpdated().at }} by {{ lastUpdated().by }}
+    </span>
+  </div>
+
+  <!-- Cow section -->
+  <section class="rate-section">
+    <h3 class="rate-section-title">
+      <span aria-hidden="true">🐄</span>
+      <span>Cow Milk Rates</span>
+    </h3>
+
+    <div class="rate-fields">
+      @for (f of cowFields(); track f.key) {
+        <label class="rate-field">
+          <span class="rate-field-icon" aria-hidden="true">{{ f.icon }}</span>
+          <span class="rate-field-label">{{ f.label }}</span>
+          <span class="rate-field-helper">{{ f.helper }}</span>
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            class="rate-field-input"
+            [value]="f.value"
+            [disabled]="!canEdit()"
+            (input)="updateField('cow', f.key, $any($event.target).value)"
+          />
+        </label>
+      }
+    </div>
+  </section>
+
+  <!-- Buffalo section -->
+  <section class="rate-section">
+    <h3 class="rate-section-title">
+      <span aria-hidden="true">🐃</span>
+      <span>Buffalo Milk Rates</span>
+    </h3>
+
+    <div class="rate-fields">
+      @for (f of buffaloFields(); track f.key) {
+        <label class="rate-field">
+          <span class="rate-field-icon" aria-hidden="true">{{ f.icon }}</span>
+          <span class="rate-field-label">{{ f.label }}</span>
+          <span class="rate-field-helper">{{ f.helper }}</span>
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            class="rate-field-input"
+            [value]="f.value"
+            [disabled]="!canEdit()"
+            (input)="updateField('buffalo', f.key, $any($event.target).value)"
+          />
+        </label>
+      }
+    </div>
+  </section>
+
+  <!-- Actions -->
+  @if (canEdit()) {
+    <div class="rate-actions">
+      <button
+        type="button"
+        class="gc-btn gc-btn-secondary"
+        (click)="onReset()"
+      >
+        Reset
+      </button>
+      <button
+        type="button"
+        class="gc-btn gc-btn-primary"
+        (click)="onSave()"
+      >
+        Save Rates
+      </button>
+    </div>
+  }
+
+
+
+</div>

@@ -1,0 +1,122 @@
+.admin-header {
+  margin-bottom: var(--gc-space-sm);
+}
+
+.admin-header h1 {
+  font-size: 24px;
+  margin-bottom: var(--gc-space-xs);
+}
+
+.admin-action-card {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: var(--gc-space-md);
+  padding: var(--gc-space-md);
+  background: var(--gc-surface);
+  border: 1px solid var(--gc-border);
+  border-radius: var(--gc-radius-md);
+  box-shadow: var(--gc-shadow-sm);
+  text-decoration: none;
+  color: var(--gc-text);
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+
+.admin-action-card:hover {
+  border-color: var(--gc-primary);
+}
+
+.admin-action-card:active {
+  transform: scale(0.99);
+}
+
+.admin-action-card-static {
+  cursor: default;
+}
+
+.admin-action-icon {
+  font-size: 32px;
+  text-align: center;
+  line-height: 1;
+}
+
+.admin-action-body {
+  min-width: 0;
+}
+
+.admin-action-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gc-text);
+  margin-bottom: 2px;
+}
+
+.admin-action-subtitle {
+  font-size: 13px;
+  color: var(--gc-text-muted);
+  line-height: 1.35;
+}
+
+.admin-action-arrow {
+  font-size: 24px;
+  color: var(--gc-text-muted);
+}
+
+/* Toggle switch */
+.admin-toggle {
+  position: relative;
+  width: 60px;
+  height: 34px;
+  border-radius: 999px;
+  background: #CCC;
+  transition: background 0.2s ease;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.admin-toggle-on {
+  background: var(--gc-primary);
+}
+
+.admin-toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #FFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.admin-toggle-on .admin-toggle-knob {
+  transform: translateX(26px);
+}
+
+.admin-info {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gc-space-sm);
+  padding: var(--gc-space-md);
+  background: #E3F2FD;
+  border-radius: var(--gc-radius-md);
+  color: #0D47A1;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.admin-toast {
+  position: sticky;
+  bottom: var(--gc-space-md);
+  align-self: center;
+  padding: var(--gc-space-sm) var(--gc-space-md);
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}

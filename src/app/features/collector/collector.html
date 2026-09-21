@@ -1,0 +1,86 @@
+<div class="gc-container gc-stack">
+
+  <!-- Shift indicator -->
+  <div class="collector-shift">
+    <span class="collector-shift-dot"></span>
+    <span class="collector-shift-label">{{ currentShift() }}</span>
+  </div>
+
+  <!-- Stats row -->
+  <section class="collector-stats" aria-label="Today's stats">
+    @for (stat of stats(); track stat.label) {
+      <div class="collector-stat-card">
+        <span class="collector-stat-icon" aria-hidden="true">{{ stat.icon }}</span>
+        <span class="collector-stat-label">{{ stat.label }}</span>
+        <span class="collector-stat-value">{{ stat.value }}</span>
+      </div>
+    }
+  </section>
+
+  <!-- Primary action -->
+  <button
+    type="button"
+    class="gc-btn gc-btn-primary gc-btn-large"
+    (click)="onScanFarmer()"
+  >
+    <span aria-hidden="true">📷</span>
+    <span>SCAN FARMER ID</span>
+  </button>
+
+  <section class="collector-actions" aria-label="Quick actions">
+
+  <button type="button" class="collector-action-card" (click)="onNewFarmer()">
+    <span class="collector-action-icon" aria-hidden="true">👤</span>
+    <span class="collector-action-label">New Farmer</span>
+  </button>
+
+  <button type="button" class="collector-action-card" (click)="onRegisterAnimal()">
+    <span class="collector-action-icon" aria-hidden="true">🐄</span>
+    <span class="collector-action-label">Register Animal</span>
+  </button>
+
+  <button type="button" class="collector-action-card" (click)="onFarmerList()">
+    <span class="collector-action-icon" aria-hidden="true">📋</span>
+    <span class="collector-action-label">Farmer List</span>
+  </button>
+
+  <a class="collector-action-card" routerLink="/collector/rates">
+    <span class="collector-action-icon" aria-hidden="true">💹</span>
+    <span class="collector-action-label">View Rates</span>
+  </a>
+
+</section>
+
+  <!-- Sync status -->
+  @if (!isOnline() || pendingCount() > 0) {
+    <div class="gc-card collector-sync">
+      <div class="gc-row-between">
+        <div>
+          <div class="gc-text-large">
+            @if (pendingCount() > 0) {
+              {{ pendingCount() }} pending
+            } @else {
+              All synced
+            }
+          </div>
+          <div class="gc-text-muted">
+            @if (!isOnline()) {
+              Waiting for network
+            } @else {
+              Ready to sync
+            }
+          </div>
+        </div>
+        <button
+          type="button"
+          class="gc-btn gc-btn-secondary"
+          [disabled]="!isOnline() || pendingCount() === 0"
+          (click)="onSync()"
+        >
+          Sync Now
+        </button>
+      </div>
+    </div>
+  }
+
+</div>

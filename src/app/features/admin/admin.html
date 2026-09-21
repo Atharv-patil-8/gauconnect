@@ -1,0 +1,51 @@
+<div class="gc-container gc-stack">
+
+  <header class="admin-header">
+    <h1>🔐 Admin Panel</h1>
+    <p class="gc-text-muted">Dairy-wide settings and permissions</p>
+  </header>
+
+  <!-- Rate Settings -->
+  <a
+    class="admin-action-card"
+    routerLink="/admin/rates"
+  >
+    <div class="admin-action-icon">💹</div>
+    <div class="admin-action-body">
+      <div class="admin-action-title">Milk Rate Settings</div>
+      <div class="admin-action-subtitle">
+        Configure Fat &amp; SNF rates for Cow and Buffalo milk
+      </div>
+    </div>
+    <div class="admin-action-arrow">→</div>
+  </a>
+
+  <!-- Collector Permissions -->
+  <div class="admin-action-card admin-action-card-static">
+    <div class="admin-action-icon">🔑</div>
+    <div class="admin-action-body">
+      <div class="admin-action-title">Collector Rate Editing</div>
+      <div class="admin-action-subtitle">
+        Allow collectors to modify rates while collecting milk
+      </div>
+    </div>
+    <button
+      type="button"
+      class="admin-toggle"
+      [class.admin-toggle-on]="permissions().collectorCanEditRates"
+      (click)="toggleCollectorRateEdit()"
+      [attr.aria-pressed]="permissions().collectorCanEditRates"
+    >
+      <span class="admin-toggle-knob"></span>
+    </button>
+  </div>
+
+  <!-- Info card -->
+  <div class="admin-info">
+    <span aria-hidden="true">ℹ️</span>
+    <span>
+      When collector rate editing is <strong>disabled</strong>, collectors can
+      still <em>view</em> the rates but cannot change them.
+    </span>
+  </div>
+</div>

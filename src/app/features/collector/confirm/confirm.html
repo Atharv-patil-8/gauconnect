@@ -1,0 +1,89 @@
+<div class="gc-container gc-stack">
+
+  <h1 class="confirm-title">Confirm Collection</h1>
+
+  @if (flow.farmer(); as f) {
+    @if (flow.animal(); as a) {
+
+      <div class="summary-card">
+
+        <div class="summary-row">
+          <span class="summary-label">Farmer</span>
+          <span class="summary-value">{{ f.name }}</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Animal</span>
+          <span class="summary-value">
+            {{ a.type === 'Cow' ? '🐄' : '🐃' }}
+            {{ a.type }} #{{ a.registrationNumber }}
+          </span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-row">
+          <span class="summary-label">Quantity</span>
+          <span class="summary-value">{{ flow.quantity() | number:'1.1-1' }} L</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Fat</span>
+          <span class="summary-value">{{ flow.fat() | number:'1.1-1' }}%</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">SNF</span>
+          <span class="summary-value">{{ flow.snf() | number:'1.1-1' }}%</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Rate</span>
+          <span class="summary-value">₹{{ rate() | number:'1.2-2' }}/L</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-row summary-row-total">
+          <span class="summary-label-total">AMOUNT</span>
+          <span class="summary-amount">₹{{ amount() | number:'1.2-2' }}</span>
+        </div>
+
+      </div>
+
+      <p class="gc-text-muted confirm-note">
+        Amount will be credited to the farmer's account.
+      </p>
+
+      <div class="confirm-actions">
+        <button
+          type="button"
+          class="gc-btn gc-btn-secondary"
+          [disabled]="submitting()"
+          (click)="onEdit()"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          class="gc-btn gc-btn-primary gc-btn-large"
+          [disabled]="submitting()"
+          (click)="onConfirm()"
+        >
+          {{ submitting() ? 'Saving...' : 'CONFIRM PAYMENT' }}
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="link-btn-cancel"
+        [disabled]="submitting()"
+        (click)="onCancel()"
+      >
+        Cancel Collection
+      </button>
+
+    }
+  }
+
+</div>
